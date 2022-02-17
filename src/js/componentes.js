@@ -10,7 +10,7 @@ const btnSeleccionado = document.querySelectorAll('.filtro');
 
 export const crearTodoHtml = (todo) => {
   const tareaHtml = `
-    <li class="${todo.completado ? 'completed' : ''}" data-id="${Date.now()}">
+    <li class="${todo.completado ? 'completed' : ''}" data-id="${todo.id}">
         <div class="view">
             <input class="toggle" type="checkbox" ${
               todo.completado ? 'checked' : ''
@@ -24,7 +24,6 @@ export const crearTodoHtml = (todo) => {
   const div = document.createElement('div');
   div.innerHTML = tareaHtml;
   divTodoList.append(div.firstElementChild);
-
   return div.firstElementChild;
 };
 
@@ -42,6 +41,7 @@ divTodoList.addEventListener('click', (event) => {
   const nombreElemento = event.target.localName; // label, button, input
   const todoElemento = event.target.parentElement.parentElement;
   const todoId = todoElemento.getAttribute('data-id');
+  console.log(todoId);
 
   if (nombreElemento.includes('input')) {
     todoList.marcarCompletado(todoId);

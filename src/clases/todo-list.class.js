@@ -2,13 +2,13 @@ import { Todo } from './todo.class';
 
 export class TodoList {
   constructor() {
+    // this.todos = [];
     this.cargarLocalStorage();
   }
 
   nuevoTodo(todo) {
     this.todos.push(todo);
     this.guardarLocalStorage();
-    this.cargarLocalStorage();
   }
 
   eliminarTodo(id) {
@@ -37,9 +37,9 @@ export class TodoList {
 
   cargarLocalStorage() {
     this.todos = localStorage.getItem('todo')
-      ? (this.todos = JSON.parse(localStorage.getItem('todo')))
+      ? JSON.parse(localStorage.getItem('todo'))
       : [];
 
-    this.todos = this.todos.map((obj) => Todo.fromJson(obj));
+    this.todos = this.todos.map(Todo.fromJson);
   }
 }
